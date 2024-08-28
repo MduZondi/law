@@ -1,0 +1,12 @@
+
+streamlit
+langchain
+langchain_google_genai
+langchain_openai
+langchain_anthropic
+pillow
+pytesseract
+numpy
+opencv-python-headless
+PyPDF2
+python-docx
