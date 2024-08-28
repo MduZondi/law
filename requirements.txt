@@ -10,3 +10,4 @@ numpy
 opencv-python-headless
 PyPDF2
 python-docx
+langchain_community
