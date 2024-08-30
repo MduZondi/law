@@ -17,10 +17,19 @@ if 'transcript_summary' not in st.session_state:
     st.session_state.transcript_summary = ""
 if 'key_insights' not in st.session_state:
     st.session_state.key_insights = ""
+if 'google_api_key' not in st.session_state:
+    st.session_state.google_api_key = ""
 
-# Initialize the ChatGoogleGenerativeAI model
-google_api_key = "AIzaSyByN144UKV06XVeEm32okgCuos9HwhIv5Y"
-llm = ChatGoogleGenerativeAI(model='gemini-pro', google_api_key=google_api_key, streaming=True)
+# Sidebar menu for API key input
+st.sidebar.header("API Key Configuration")
+st.session_state.google_api_key = st.sidebar.text_input("Enter your Google API Key", type="password")
+
+# Check if API key is provided
+if st.session_state.google_api_key:
+    # Initialize the ChatGoogleGenerativeAI model with the user's API key
+    llm = ChatGoogleGenerativeAI(model='gemini-pro', google_api_key=st.session_state.google_api_key, streaming=True)
+else:
+    st.sidebar.warning("Please enter a valid Google API key to enable summarization.")
 
 # Function to stream responses
 def stream_response(response):
